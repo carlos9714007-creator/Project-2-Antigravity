@@ -23,9 +23,10 @@
 }
 
 .theme-rose {
-    --accent: #ff00ff;
-    --accent-glow: rgba(255, 0, 255, 0.6);
-    --piece-glow: rgba(255, 0, 255, 0.4);
+    --accent: #ff0055;
+    /* Note: Reusing accent consistency */
+    --accent-glow: rgba(255, 0, 85, 0.6);
+    --piece-glow: rgba(255, 0, 85, 0.4);
     --bg-tint: rgba(15, 0, 15, 0.4);
 }
 
@@ -325,70 +326,139 @@ body:not(.loading) #app {
 /* MOBILE CONTROLS */
 .mobile-input {
     display: none;
-    margin-top: 20px;
 }
 
 .input-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
 }
 
 .joy-btn {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    color: white;
-    padding: 20px;
-    border-radius: 20px;
-    font-size: 1.5rem;
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    padding: 15px 5px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    backdrop-filter: blur(5px);
+    transition: all 0.2s;
 }
 
 .joy-btn.rotate {
-    grid-row: span 2;
     background: var(--accent);
+    opacity: 0.3;
     color: #000;
-    font-weight: 800;
-    font-size: 0.9rem;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.joy-btn:active {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(0.95);
 }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
     #app {
-        padding: 15px;
+        padding: 10px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .game-header {
+        margin-bottom: 5px;
+        flex-shrink: 0;
     }
 
     .game-layout {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr auto;
-        gap: 15px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        gap: 5px;
     }
 
     .game-sidebar {
         display: flex;
-        gap: 15px;
-    }
-
-    .game-sidebar.right {
-        flex-direction: row-reverse;
+        gap: 8px;
+        order: 1;
     }
 
     .stats-panel {
         flex: 1;
         display: flex;
         justify-content: space-around;
-        padding: 15px;
+        padding: 8px;
+        border-radius: 12px;
     }
 
     .stat-item {
         margin: 0;
     }
 
+    .stat-value {
+        font-size: 1.2rem;
+    }
+
+    .stat-label {
+        font-size: 0.5rem;
+    }
+
     .preview-panel {
         display: none;
     }
 
+    .game-board-area {
+        flex: 1;
+        min-height: 0;
+        order: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .board-container {
+        height: 100%;
+        width: 100%;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #tetris-canvas {
+        height: 100%;
+        width: auto;
+        max-width: 100%;
+    }
+
     .mobile-input {
         display: block;
+        order: 3;
+        margin-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .game-sidebar.right {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        order: 4;
+    }
+
+    .controls-panel {
+        padding: 5px;
+        background: transparent;
+        border: none;
+        backdrop-filter: none;
+        box-shadow: none;
+    }
+
+    #quit-btn {
+        padding: 5px 15px;
+        font-size: 0.7rem;
+        background: rgba(255, 0, 85, 0.2);
     }
 }
