@@ -346,11 +346,15 @@ body:not(.loading) #app {
 }
 
 .joy-btn.rotate {
-    background: var(--accent);
-    opacity: 0.3;
-    color: #000;
-    font-weight: 700;
-    font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    /* Transparent like others */
+    border: 2px solid var(--accent);
+    /* Neon border for identification */
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 0.8rem;
+    text-shadow: 0 0 10px var(--accent-glow);
+    box-shadow: inset 0 0 10px var(--accent-glow);
 }
 
 .joy-btn:active {
@@ -417,6 +421,10 @@ body:not(.loading) #app {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-bottom: 10px;
+        /* Extra clearance for controls */
+        max-height: 55vh;
+        /* Limit height to prevent overlap */
     }
 
     .board-container {
