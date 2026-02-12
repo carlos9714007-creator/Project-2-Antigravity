@@ -356,7 +356,37 @@ playerReset();
 drawNext();
 update();
 
+// PWA Install Logic
+let deferredPrompt;
+const installBtn = document.getElementById('install-btn');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = 'block';
+});
+
+installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            installBtn.style.display = 'none';
+        }
+        deferredPrompt = null;
+    }
+});
+
+window.addEventListener('appinstalled', () => {
+    installBtn.style.display = 'none';
+    deferredPrompt = null;
+});
+
 // SW Registration
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js');
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('SW Registered'))
+            .catch(err => console.log('SW Registration failed', err));
+    });
 }
