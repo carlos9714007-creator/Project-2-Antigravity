@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tettris - Modern Masterpiece</title>
+    <meta name="description" content="Um jogo de Tetris moderno e sofisticado com temas dinâmicos.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="theme-midnight">
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="loader-circle"></div>
+            <h1>TETTRIS</h1>
+        </div>
+    </div>
+
+    <div id="video-bg-container">
+        <div class="overlay-texture"></div>
+        <div class="moscow-fallback-dynamic"></div>
+        <video autoplay muted loop playsinline id="moscow-video" class="moscow-video">
+            <source
+                src="https://assets.mixkit.co/videos/preview/mixkit-moscow-city-at-night-with-bright-lights-4428-large.mp4"
+                type="video/mp4">
+        </video>
+    </div>
+
+    <main id="app">
+        <header class="game-header">
+            <div class="brand">
+                <span class="brand-text">Tettris by</span>
+                <img src="logo.png" alt="Logo" class="logo">
+            </div>
+            <div class="header-actions">
+                <button id="theme-toggle" class="icon-btn" title="Alterar Tema">
+                    <span class="icon">🎨</span>
+                </button>
+                <button id="install-btn" class="glass-btn small" style="display: none;">Instalar</button>
+            </div>
+        </header>
+
+        <div class="game-layout">
+            <section class="game-sidebar left">
+                <div class="stats-panel glass-card">
+                    <div class="stat-item">
+                        <span class="stat-label">PONTOS</span>
+                        <span id="score" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">NÍVEL</span>
+                        <span id="level" class="stat-value">1</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">LINHAS</span>
+                        <span id="lines" class="stat-value">0</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="game-board-area">
+                <div class="board-container glass-card main-board">
+                    <canvas id="tetris-canvas"></canvas>
+                    <div id="game-overlay" class="overlay hidden">
+                        <div class="overlay-content">
+                            <h2 id="overlay-msg">GAME OVER</h2>
+                            <button id="restart-btn" class="action-btn primary">RECOMEÇAR</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="game-sidebar right">
+                <div class="preview-panel glass-card">
+                    <span class="stat-label">PRÓXIMO</span>
+                    <div class="canvas-wrapper">
+                        <canvas id="next-canvas"></canvas>
+                    </div>
+                </div>
+                <div class="controls-panel glass-card">
+                    <button id="quit-btn" class="action-btn danger">DESISTIR</button>
+                </div>
+            </section>
+        </div>
+
+        <nav class="mobile-input">
+            <div class="input-grid">
+                <button id="move-left" class="joy-btn">←</button>
+                <button id="rotate" class="joy-btn rotate">ROTATE</button>
+                <button id="move-right" class="joy-btn">→</button>
+                <button id="move-down" class="joy-btn drop">↓</button>
+            </div>
+        </nav>
+    </main>
+
+    <script src="game.js"></script>
+</body>
+
+</html>
